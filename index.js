@@ -1,83 +1,46 @@
-const mapifyRecursive = (arr1, retObject = {}, currKey = '') => {
-  const isObject = typeof arr1 === 'object'
-  const isArray = Array.isArray(arr1)
-  const keys = Object.keys(arr1)
-
-  keys.forEach(key => {
-    if (Array.isArray(arr1[key]) || typeof arr1[key] === 'object') {
-      if (isArray) {
-        return mapify(arr1[key], retObject, `${currKey}[${key}]`)
-      } else if (isObject) {
-        return mapify(arr1[key], retObject, `${currKey}.${key}`)
-      }
-    } else {
-      if (isArray) {
-        retObject[`${currKey}[${key}]`] = arr1[key]
-      } else if (isObject) {
-        retObject[`${currKey}.${key}`] = arr1[key]
-      }
+const compare = (arr1, arr2) => {
+  if (Array.isArray(arr1) && Array.isArray(arr2)) {
+    if (arr1.length !== arr2.length) {
+      // a man's array does not look like a girl's array
+      // a man's array does not look like a girl's array
+      return false
     }
-  })
-  return retObject
-}
+  }
 
-const mapify = (arr1) => {
-  const stillGoing = true
-  const retObject = {}
-  let currObject = arr1
-  let currKey = ''
-
-  let recStack = [{ '': arr1 }]
-  
-  while (recStack.length) {
-    const currTuple = recStack.pop()
-    const currKey = Object.keys(currTuple)[0]
-    const currObject = currTuple[currKey]
-
-    const isObject = typeof currObject === 'object'
-    const isArray = Array.isArray(currObject)
-
-    const keys = Object.keys(currObject)
-    keys.forEach(key => {
-      if (Array.isArray(currObject[key]) || typeof currObject[key] === 'object') {
-        if (isArray) {
-          let tmpKey = currKey + '[' + key
-          recStack.push({ tmpKey: currObject[key] })
-        } else if (isObject) {
-          let tmpKey = currKey + '.' + key
-          recStack.push({ tmpKey: currObject[key] })
+  const keys = Object.keys(arr1)
+  for (let i = 0; i < keys.length; i++) {
+    const key = keys[i]
+    if (Array.isArray(arr1[key])) {
+      if (Array.isArray(arr2[key])) {
+        if (!compare(arr1[key], arr2[key])) {
+          // a man has an array, a girl has a different array
+          return false
         }
-      } else {
-        if (isArray) {
-          retObject[currKey + '[' + key] = currObject[key]
-        } else if (isObject) {
-          retObject[currKey + '.' + key] = currObject[key]
-        }
+        // a man may share an array with a girl
+        continue
       }
-    })
+      // a man has an array, a girl does not
+      return false
+    }
+
+    if (typeof arr1[key] === 'object') {
+      if (typeof arr2[key] === 'object') {
+        if (!compare(arr1[key], arr2[key])) {
+          // a man has an object, a girl has a different object
+          return false
+        }
+        continue
+      }
+      // a man has an object, a girl does not
+      return false
+    }
+    if (arr1[i] !== arr2[i]) {
+      // a man has values that a girl does not share
+      return false
+    }
   }
 
-  return retObject
-}
-
-const deepEqual = (arr1, arr2) => {
-  // edge case
-  if (arr1.length !== arr2.length) return false
-
-  const map1 = mapify(arr1)
-  const map2 = mapify(arr2)
-
-  const map1Keys = Object.keys(map1)
-
-  for (var i = 0; i < map1Keys.length; i++) {
-    const currKey = map1Keys[i]
-    if (!map2[currKey] || map2[currKey] !== map1[currKey]) return false
-  }
   return true
 }
 
-module.exports = {
-  mapify,
-  deepEqual
-};
-
+module.exports = compare

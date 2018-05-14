@@ -1,13 +1,13 @@
 {
   "name": "array-deep-equals",
   "version": "1.0.0",
-  "description": "",
+  "description": "get equality of arrays with nested arrays and nested objects",
   "main": "index.js",
   "scripts": {
     "test": "ava"
   },
-  "author": "",
-  "license": "ISC",
+  "author": "Joel Wasserman",
+  "license": "MIT",
   "devDependencies": {
     "ava": "^0.25.0"
   }

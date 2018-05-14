@@ -1,30 +1,21 @@
-import test from 'ava'
-import { 
-  mapify,
-  deepEqual
-} from './index'
-
-
+const test = require('ava')
+const compare = require('./')
 
 test('arrays not equal', t => {
-  t.false(deepEqual(a, c))
+  t.false(compare(a, c))
 })
 
 test('arrays equal', t => {
-  t.true(deepEqual(a, b))
+  t.true(compare(a, b))
 })
 
 test('deeper arrays equal', t => {
-  t.true(deepEqual(arr1, arr2))
+  t.true(compare(arr1, arr2))
 })
 
 test('deeper not equal because different orders', t => {
-  t.false(deepEqual(arr1, arr3))
+  t.false(compare(arr1, arr3))
 })
-
-
-
-
 
 const a = [1, 2, 'test', { a: '1' }, ['five', 'six', { hi: 'world' }]]
 const b = [1, 2, 'test', { a: '1' }, ['five', 'six', { hi: 'world' }]]
@@ -73,6 +64,3 @@ let arr3 = [
     d: [ 71, 72, 73, { 'sonested': true } ]
   }
 ]
-
-let arr4 = [ 1, 2, 3, 4, 5, 6 ]
-
