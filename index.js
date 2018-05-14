@@ -26,19 +26,26 @@ const mapify = (arr1) => {
   const retObject = {}
   let currObject = arr1
   let currKey = ''
+
+  let recStack = [{ '': arr1 }]
   
-  while (stillGoing) {
+  while (recStack.length) {
+    const currTuple = recStack.pop()
+    const currKey = Object.keys(currTuple)[0]
+    const currObject = currTuple[currKey]
+
     const isObject = typeof currObject === 'object'
     const isArray = Array.isArray(currObject)
+
     const keys = Object.keys(currObject)
     keys.forEach(key => {
       if (Array.isArray(currObject[key]) || typeof currObject[key] === 'object') {
         if (isArray) {
-          currObject = currObject[key]
-          currKey = currKey + '[' + key
+          let tmpKey = currKey + '[' + key
+          recStack.push({ tmpKey: currObject[key] })
         } else if (isObject) {
-          currObject = currObject[key]
-          currKey = currKey + '.' + key
+          let tmpKey = currKey + '.' + key
+          recStack.push({ tmpKey: currObject[key] })
         }
       } else {
         if (isArray) {
