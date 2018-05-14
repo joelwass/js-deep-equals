@@ -2,7 +2,6 @@ const compare = (arr1, arr2) => {
   if (Array.isArray(arr1) && Array.isArray(arr2)) {
     if (arr1.length !== arr2.length) {
       // a man's array does not look like a girl's array
-      // a man's array does not look like a girl's array
       return false
     }
   }
