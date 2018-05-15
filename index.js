@@ -49,10 +49,10 @@ const mapify = (arr1, retObject = {}, currKey = '') => {
       if (isArray) {
         if (retObject[currKey + '[_]']) retObject[currKey + '[_]'].push(arr1[key])
         else retObject[`${currKey}[_]`] = [arr1[key]]
-      } else if (isObject) {
-        if (retObject[currKey + '.' + key]) retObject[currKey + '.' + key].push(arr1[key])
-        else retObject[currKey + '.' + key] = [arr1[key]]
-      }
+        return
+      } 
+      if (retObject[currKey + '.' + key]) retObject[currKey + '.' + key].push(arr1[key])
+      else retObject[currKey + '.' + key] = [arr1[key]]
     }
   })
   return retObject
@@ -64,9 +64,6 @@ const compareUnsorted = (arr1, arr2) => {
 
   const map1 = mapify(arr1)
   const map2 = mapify(arr2)
-
-  console.log(map1)
-  console.log(map2)
 
   const keys = Object.keys(map1)
   const keys2 = Object.keys(map2)
