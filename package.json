@@ -4,12 +4,13 @@
   "description": "get equality of arrays with nested arrays and nested objects",
   "main": "index.js",
   "scripts": {
-    "test": "ava"
+    "test": "nyc ava"
   },
   "author": "Joel Wasserman",
   "license": "MIT",
   "devDependencies": {
     "ava": "^0.25.0",
-    "coveralls": "^3.0.1"
+    "coveralls": "^3.0.1",
+    "nyc": "^11.7.3"
   }
 }
