@@ -9,6 +9,7 @@
   "author": "Joel Wasserman",
   "license": "MIT",
   "devDependencies": {
-    "ava": "^0.25.0"
+    "ava": "^0.25.0",
+    "coveralls": "^3.0.1"
   }
 }
