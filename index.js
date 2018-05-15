@@ -42,17 +42,17 @@ const mapify = (arr1, retObject = {}, currKey = '') => {
   keys.forEach(key => {
     if (Array.isArray(arr1[key]) || typeof arr1[key] === 'object') {
       if (isArray) {
-        return mapify(arr1[key], retObject, `${currKey}[_]`)
+        return mapify(arr1[key], retObject, currKey + '[_]')
       } else if (isObject) {
-        return mapify(arr1[key], retObject, `${currKey}.${key}`)
+        return mapify(arr1[key], retObject, currKey + '.' + key)
       }
     } else {
       if (isArray) {
-        if (retObject[`${currKey}[_]`]) retObject[`${currKey}[_]`].push(arr1[key])
+        if (retObject[currKey + '[_]']) retObject[currKey + '[_]'].push(arr1[key])
         else retObject[`${currKey}[_]`] = [arr1[key]]
       } else if (isObject) {
-        if (retObject[`${currKey}.${key}`]) retObject[`${currKey}.${key}`].push(arr1[key])
-        else retObject[`${currKey}.${key}`] = [arr1[key]]
+        if (retObject[currKey + '.' + key]) retObject[currKey + '.' + key].push(arr1[key])
+        else retObject[currKey + '.' + key] = [arr1[key]]
       }
     }
   })
