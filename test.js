@@ -53,6 +53,18 @@ test('array of empty object with array of empty array', t => {
   t.false(compare([{}], [[]]))
 })
 
+test('array of same dates', t => {
+  t.true(compare([new Date('Tue Mar 24 2015 20:00:00 GMT-0400')], [new Date('Tue Mar 24 2015 20:00:00 GMT-0400')]))
+})
+
+test('array of dissimilar dates', t => {
+  t.false(compare([new Date('Tue Mar 24 2015 20:00:00 GMT-0400')], [new Date('Tue Mar 24 2017 20:00:00 GMT-0400')]))
+})
+
+test('array of date and non date', t => {
+  t.false(compare([new Date('Tue Mar 24 2015 20:00:00 GMT-0400')], [1]))
+})
+
 test('compare unsorted array lengths not the same', t => {
   t.false(compareUnsorted([1, 2, 3], [1, 2]))
 })
@@ -103,6 +115,18 @@ test('array of empty object with array different-keyed empty object', t => {
 
 test('array of empty object with array of empty array', t => {
   t.false(compareUnsorted([{}], [[]]))
+})
+
+test('array of same dates', t => {
+  t.true(compareUnsorted([new Date('Tue Mar 24 2015 20:00:00 GMT-0400')], [new Date('Tue Mar 24 2015 20:00:00 GMT-0400')]))
+})
+
+test('array of dissimilar dates', t => {
+  t.false(compareUnsorted([new Date('Tue Mar 24 2015 20:00:00 GMT-0400')], [new Date('Tue Mar 24 2017 20:00:00 GMT-0400')]))
+})
+
+test('array of date and non date', t => {
+  t.false(compareUnsorted([new Date('Tue Mar 24 2015 20:00:00 GMT-0400')], [1]))
 })
 
 const a = [1, 2, 'test', { a: '1' }, ['five', 'six', { hi: 'world' }]]

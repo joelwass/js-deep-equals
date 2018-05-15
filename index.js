@@ -18,6 +18,15 @@ const compare = (arr1, arr2) => {
       return false
     }
 
+    // account for date objects
+    if (arr1[key] instanceof Date) {
+      if (arr2[key] instanceof Date) {
+        if (arr1[key].toString() !== arr2[key].toString()) return false
+        continue
+      }
+      return false
+    }
+
     if (typeof arr1[key] === 'object') {
       if (typeof arr2[key] === 'object' && !Array.isArray(arr2[key])) {
         // a man has an object, a girl has a different object
@@ -44,6 +53,7 @@ const mapify = (arr1, retObject = {}, currKey = '') => {
   }
 
   keys.forEach(key => {
+    if (arr1[key] instanceof Date) arr1[key] = arr1[key].toString()
     if (Array.isArray(arr1[key]) || typeof arr1[key] === 'object') {
       if (isArray) {
         return mapify(arr1[key], retObject, currKey + '[_]')
