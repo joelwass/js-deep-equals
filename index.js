@@ -43,9 +43,8 @@ const mapify = (arr1, retObject = {}, currKey = '') => {
     if (Array.isArray(arr1[key]) || typeof arr1[key] === 'object') {
       if (isArray) {
         return mapify(arr1[key], retObject, currKey + '[_]')
-      } else if (isObject) {
-        return mapify(arr1[key], retObject, currKey + '.' + key)
       }
+      return mapify(arr1[key], retObject, currKey + '.' + key)
     } else {
       if (isArray) {
         if (retObject[currKey + '[_]']) retObject[currKey + '[_]'].push(arr1[key])
@@ -60,15 +59,20 @@ const mapify = (arr1, retObject = {}, currKey = '') => {
 }
 
 const compareUnsorted = (arr1, arr2) => {
-  if (Array.isArray(arr1) && Array.isArray(arr2)) {
     // a man's array does not look like a girl's array
-    if (arr1.length !== arr2.length) return false
-  }
+  if (!(Array.isArray(arr1) && Array.isArray(arr2)) || arr1.length !== arr2.length) return false
 
   const map1 = mapify(arr1)
   const map2 = mapify(arr2)
 
+  console.log(map1)
+  console.log(map2)
+
   const keys = Object.keys(map1)
+  const keys2 = Object.keys(map2)
+
+  if (keys.length !== keys2.length) return false
+  
   for (let i = 0; i < keys.length; i++) {  
     const key = keys[i]
     // a man has values that a girl does not share

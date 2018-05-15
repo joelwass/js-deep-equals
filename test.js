@@ -17,12 +17,56 @@ test('deeper not equal because different orders', t => {
   t.false(compare(arr1, arr3))
 })
 
+test('not equal arrays with different types at indexes', t => {
+  t.false(compare(arr5, arr1))
+})
+
+test('compare nested arrays not equal', t => {
+  t.false(compare([[1, 2, 3]], [[1, 2]]))
+})
+
+test('compare nested objects not equal', t => {
+  t.false(compare([{1: 'one'}], [{1: 'two'}]))
+})
+
+test('one object and one not an object', t => {
+  t.false(compare([{ hi: 'world' }], [2]))
+})
+
+test('array lengths not the same', t => {
+  t.false(compare([1, 2, 3], [1, 2]))
+})
+
+test('compare unsorted array lengths not the same', t => {
+  t.false(compareUnsorted([1, 2, 3], [1, 2]))
+})
+
+test('compare unsorted array lengths not the same', t => {
+  t.false(compareUnsorted([{ hi: { hello: 'world', 1: 2 }}], [1]))
+})
+
+test('compare unsorted with nested object', t => {
+  t.false(compareUnsorted([{ hi: 'world' }, { hi: 'world' }], [1, 2]))
+})
+
+test('compare unsorted one object and one not an object', t => {
+  t.false(compareUnsorted([{ hi: 'world' }], [2]))
+})
+
+test('compare unsorted long chain with not same', t => {
+  t.false(compareUnsorted([0, 2, 3], [5, 6, 6]))
+})
+
 test('arrays not equal unsorted', t => {
   t.false(compareUnsorted(a, c))
 })
 
 test('arrays equal unsorted', t => {
   t.true(compareUnsorted(a, b))
+})
+
+test('nested arrays and objects unsorted', t => {
+  t.false(compareUnsorted([{a: {}}], [1]))
 })
 
 test('nested arrays equal unsorted', t => {
@@ -66,6 +110,21 @@ let arr4 = [
   1,
   3,
   2,
+  'test',
+  {
+    a: 12,
+    b: 13,
+    c: 14,
+    d: [ 71, 72, 73, { 'sonested': true } ]
+  },
+  'test2',
+  'test3',
+]
+
+let arr5 = [
+  [1, 2],
+  3,
+  { 'hello': 'world' },
   'test',
   {
     a: 12,

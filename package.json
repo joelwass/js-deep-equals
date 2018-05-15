@@ -4,7 +4,8 @@
   "description": "get equality of arrays with nested arrays and nested objects",
   "main": "index.js",
   "scripts": {
-    "test": "nyc ava"
+    "test": "nyc ava",
+    "coverage": "nyc npm test && nyc report --reporter=text-lcov | ./node_modules/coveralls/bin/coveralls.js"
   },
   "author": "Joel Wasserman",
   "license": "MIT",
