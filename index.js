@@ -19,7 +19,7 @@ const compare = (arr1, arr2) => {
     }
 
     if (typeof arr1[key] === 'object') {
-      if (typeof arr2[key] === 'object') {
+      if (typeof arr2[key] === 'object' && !Array.isArray(arr2[key])) {
         // a man has an object, a girl has a different object
         if (!compare(arr1[key], arr2[key])) return false
         continue
@@ -38,6 +38,10 @@ const mapify = (arr1, retObject = {}, currKey = '') => {
   const isObject = typeof arr1 === 'object'
   const isArray = Array.isArray(arr1)
   const keys = Object.keys(arr1)
+
+  if (!keys.length) {
+    retObject[currKey] = isArray ? '__mapify_empty_array' : '__mapify_empty_object'
+  }
 
   keys.forEach(key => {
     if (Array.isArray(arr1[key]) || typeof arr1[key] === 'object') {
@@ -59,7 +63,6 @@ const mapify = (arr1, retObject = {}, currKey = '') => {
 }
 
 const compareUnsorted = (arr1, arr2) => {
-    // a man's array does not look like a girl's array
   if (!(Array.isArray(arr1) && Array.isArray(arr2)) || arr1.length !== arr2.length) return false
 
   const map1 = mapify(arr1)
