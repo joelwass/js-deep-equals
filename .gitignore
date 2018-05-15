@@ -1,4 +1,5 @@
 package-lock.json
 node_modules/
 .nyc_report/
+.nyc_output/
 .coveralls.yml
