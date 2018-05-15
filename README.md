@@ -1,4 +1,4 @@
-# array-deep-equal
+# array-deep-equals
 [![Build Status](https://travis-ci.org/joelwass/array-deep-equal.svg?branch=master)](https://travis-ci.org/joelwass/array-deep-equal)
 [![Coverage Status](https://coveralls.io/repos/github/joelwass/array-deep-equal/badge.svg?branch=master)](https://coveralls.io/github/joelwass/array-deep-equal?branch=master)
 
@@ -8,10 +8,10 @@ sorted array compare is up to ~%60 faster than the `JSON.stringify` method [jspe
 
 ## usage
 
-`npm install array-deep-equal`
+`npm install array-deep-equals`
 
 ```javascript
-const { arrayDeepEqual, arrayDeepEqualUnsorted } = require('array-deep-equal')
+const { arrayDeepEqual, arrayDeepEqualUnsorted } = require('array-deep-equals')
 const arr1 = [
   1,
   2,
