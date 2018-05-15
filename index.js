@@ -33,7 +33,7 @@ const compare = (arr1, arr2) => {
       // a man has an object, a girl does not
       return false
     }
-    if (arr1[i] !== arr2[i]) {
+    if (arr1[key] !== arr2[key]) {
       // a man has values that a girl does not share
       return false
     }
