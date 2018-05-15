@@ -71,7 +71,7 @@ const compareUnsorted = (arr1, arr2) => {
   const keys = Object.keys(map1)
   for (let i = 0; i < keys.length; i++) {  
     const key = keys[i]
-    // girl does not have property of man
+    // a man has values that a girl does not share
     if (!map2[key]) return false
     
     for (let j = 0; j < map1[key].length; j++) {
