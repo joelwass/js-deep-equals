@@ -1,7 +1,7 @@
 # array-deep-equal
 testing of array deep equality (unsorted and sorted), accounts for nested arrays and nested objects
 
-up to ~%60 faster than the `JSON.stringify` method [jsperf](https://jsperf.com/array-deep-equals)
+sorted array compare is up to ~%60 faster than the `JSON.stringify` method [jsperf](https://jsperf.com/array-deep-equals)
 
 ## usage
 
