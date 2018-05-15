@@ -37,6 +37,22 @@ test('array lengths not the same', t => {
   t.false(compare([1, 2, 3], [1, 2]))
 })
 
+test('array of empty object with array of stringed curly braces', t => {
+  t.false(compare([{a: {}}], [{a: '{}'}]))
+})
+
+test('array of empty object with array of empty object', t => {
+  t.true(compare([{a: {}}], [{a: {}}]))
+})
+
+test('array of empty object with array different-keyed empty object', t => {
+  t.false(compare([{a: {}}], [{b: {}}]))
+})
+
+test('array of empty object with array of empty array', t => {
+  t.false(compare([{}], [[]]))
+})
+
 test('compare unsorted array lengths not the same', t => {
   t.false(compareUnsorted([1, 2, 3], [1, 2]))
 })
@@ -71,6 +87,22 @@ test('nested arrays and objects unsorted', t => {
 
 test('nested arrays equal unsorted', t => {
   t.true(compareUnsorted(arr1, arr4))
+})
+
+test('array of empty object with array of stringed curly braces', t => {
+  t.false(compareUnsorted([{a: {}}], [{a: '{}'}]))
+})
+
+test('array of empty object with array of empty object', t => {
+  t.true(compareUnsorted([{a: {}}], [{a: {}}]))
+})
+
+test('array of empty object with array different-keyed empty object', t => {
+  t.false(compareUnsorted([{a: {}}], [{b: {}}]))
+})
+
+test('array of empty object with array of empty array', t => {
+  t.false(compareUnsorted([{}], [[]]))
 })
 
 const a = [1, 2, 'test', { a: '1' }, ['five', 'six', { hi: 'world' }]]
