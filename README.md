@@ -1,12 +1,14 @@
 # array-deep-equal
-testing of array deep equality, accounts for nested arrays and nested objects
+testing of array deep equality (unsorted and sorted), accounts for nested arrays and nested objects
 
 up to ~%60 faster than the `JSON.stringify` method [jsperf](https://jsperf.com/array-deep-equals)
+
+## usage
 
 `npm install array-deep-equal`
 
 ```javascript
-const arrayDeepEqual = require('array-deep-equal')
+const { arrayDeepEqual, arrayDeepEqualUnsorted } = require('array-deep-equal')
 const arr1 = [
   1,
   2,
@@ -37,7 +39,23 @@ let arr2 = [
   }
 ]
 
+let arr3 = [
+  1,
+  'test',
+  2,
+  3,
+  'test2',
+  {
+    b: 13,
+    a: 12, // different order of objects is ok
+    c: 14,
+    d: [ 71, 72, 73, { 'sonested': true } ]
+  },
+  'test3'
+]
+
 arrayDeepEqual(arr1, arr2) // true
+arrayDeepEqualUnsorted(arr1, arr2) // true
 ```
 
 ## License
