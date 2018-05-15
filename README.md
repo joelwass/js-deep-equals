@@ -48,8 +48,8 @@ let arr3 = [
   {
     b: 13,
     a: 12, // different order of objects is ok
+    d: [ 71, 72, { 'sonested': true }, 73 ]
     c: 14,
-    d: [ 71, 72, 73, { 'sonested': true } ]
   },
   'test3'
 ]
