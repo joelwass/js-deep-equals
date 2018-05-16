@@ -50,6 +50,10 @@ test('array of empty object with array different-keyed empty object', t => {
   t.false(compareUnsorted([{a: {}}], [{b: {}}]))
 })
 
+test('array of small object with array different-keyed small object', t => {
+  t.false(compareUnsorted([{a: { a: 1 }}], [{b: { b: 1 }}]))
+})
+
 test('array of empty object with array of empty array', t => {
   t.false(compareUnsorted([{}], [[]]))
 })
