@@ -21,6 +21,15 @@ const compare = (arr1, arr2) => {
     // account for date objects
     if (arr1[key] instanceof Date) {
       if (arr2[key] instanceof Date) {
+        if (arr1[key].valueOf() !== arr2[key].valueOf()) return false
+        continue
+      }
+      return false
+    }
+
+    // account for regexp
+    if (arr1[key] instanceof RegExp) {
+      if (arr2[key] instanceof RegExp) {
         if (arr1[key].toString() !== arr2[key].toString()) return false
         continue
       }
@@ -53,7 +62,12 @@ const mapify = (arr1, retObject = {}, currKey = '') => {
   }
 
   keys.forEach(key => {
-    const value = arr1[key] instanceof Date ? arr1[key].toString() : arr1[key]
+    let value = arr1[key]
+    
+    // type checking
+    if (value instanceof Date) value = arr1[key].valueOf()
+    if (value instanceof RegExp) value = arr1[key].toString()
+    
     if (Array.isArray(value) || typeof value === 'object') {
       if (isArray) {
         return mapify(value, retObject, currKey + '[_]')
@@ -78,6 +92,9 @@ const compareUnsorted = (arr1, arr2) => {
   const map1 = mapify(arr1)
   const map2 = mapify(arr2)
 
+  console.log(map1)
+  console.log(map2)
+
   const keys = Object.keys(map1)
   const keys2 = Object.keys(map2)
 
@@ -92,6 +109,8 @@ const compareUnsorted = (arr1, arr2) => {
       const map1Value = map1[key][j]
       // a man has values that a girl does not share
       if (!map2[key].includes(map1Value)) return false
+      // const indexofValue = map2[key].indexof(map1Value)
+      // map2[key].splice(indexofValue, 1)
     }
   }
 
