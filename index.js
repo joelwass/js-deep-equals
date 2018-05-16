@@ -58,7 +58,7 @@ const mapify = (arr1, retObject = {}, currKey = '') => {
   const keys = Object.keys(arr1)
 
   if (!keys.length) {
-    retObject[currKey] = isArray ? '__mapify_empty_array' : '__mapify_empty_object'
+    retObject[currKey] = isArray ? ['__mapify_empty_array'] : ['__mapify_empty_object']
   }
 
   keys.forEach(key => {
@@ -92,9 +92,6 @@ const compareUnsorted = (arr1, arr2) => {
   const map1 = mapify(arr1)
   const map2 = mapify(arr2)
 
-  // console.log(map1)
-  // console.log(map2)
-
   const keys = Object.keys(map1)
   const keys2 = Object.keys(map2)
 
@@ -109,9 +106,8 @@ const compareUnsorted = (arr1, arr2) => {
       const map1Value = map1[key][j]
       // a man has values that a girl does not share
       if (!map2[key].includes(map1Value)) return false
-      // remove that shared value
       const indexofValue = map2[key].indexOf(map1Value)
-      (map2[key]).splice(indexofValue, 1)
+      map2[key].splice(indexofValue, 1)
     }
   }
 

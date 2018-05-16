@@ -55,5 +55,5 @@ test('array of empty object with array of empty array', t => {
 })
 
 test('repeat values at same depth', t => {
-  t.false(['a', 'a', 'a'], ['a', 'b', 'b'])
+  t.false(compareUnsorted(['a', 'a', 'a'], ['a', 'b', 'b']))
 })

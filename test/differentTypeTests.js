@@ -28,3 +28,7 @@ test('same regexp', t => {
 test('should fail with different regexps', t => {
   t.false(compare([new RegExp('ab+c')], [new RegExp('ab-c')]))
 })
+
+test('should fail with one regexp and other not', t => {
+  t.false(compare([new RegExp('ab+c')], [1]))
+})
