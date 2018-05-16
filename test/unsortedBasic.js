@@ -53,3 +53,7 @@ test('array of empty object with array different-keyed empty object', t => {
 test('array of empty object with array of empty array', t => {
   t.false(compareUnsorted([{}], [[]]))
 })
+
+test('repeat values at same depth', t => {
+  t.false(['a', 'a', 'a'], ['a', 'b', 'b'])
+})
