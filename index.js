@@ -53,20 +53,20 @@ const mapify = (arr1, retObject = {}, currKey = '') => {
   }
 
   keys.forEach(key => {
-    if (arr1[key] instanceof Date) arr1[key] = arr1[key].toString()
-    if (Array.isArray(arr1[key]) || typeof arr1[key] === 'object') {
+    const value = arr1[key] instanceof Date ? arr1[key].toString() : arr1[key]
+    if (Array.isArray(value) || typeof value === 'object') {
       if (isArray) {
-        return mapify(arr1[key], retObject, currKey + '[_]')
+        return mapify(value, retObject, currKey + '[_]')
       }
-      return mapify(arr1[key], retObject, currKey + '.' + key)
+      return mapify(value, retObject, currKey + '.' + key)
     } else {
       if (isArray) {
-        if (retObject[currKey + '[_]']) retObject[currKey + '[_]'].push(arr1[key])
-        else retObject[`${currKey}[_]`] = [arr1[key]]
+        if (retObject[currKey + '[_]']) retObject[currKey + '[_]'].push(value)
+        else retObject[`${currKey}[_]`] = [value]
         return
       } 
-      if (retObject[currKey + '.' + key]) retObject[currKey + '.' + key].push(arr1[key])
-      else retObject[currKey + '.' + key] = [arr1[key]]
+      if (retObject[currKey + '.' + key]) retObject[currKey + '.' + key].push(value)
+      else retObject[currKey + '.' + key] = [value]
     }
   })
   return retObject
