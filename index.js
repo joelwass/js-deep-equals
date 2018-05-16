@@ -92,8 +92,8 @@ const compareUnsorted = (arr1, arr2) => {
   const map1 = mapify(arr1)
   const map2 = mapify(arr2)
 
-  console.log(map1)
-  console.log(map2)
+  // console.log(map1)
+  // console.log(map2)
 
   const keys = Object.keys(map1)
   const keys2 = Object.keys(map2)
@@ -103,14 +103,15 @@ const compareUnsorted = (arr1, arr2) => {
   for (let i = 0; i < keys.length; i++) {  
     const key = keys[i]
     // a man has values that a girl does not share
-    if (!map2[key]) return false
+    if (!Array.isArray(map2[key])) return false
     
     for (let j = 0; j < map1[key].length; j++) {
       const map1Value = map1[key][j]
       // a man has values that a girl does not share
       if (!map2[key].includes(map1Value)) return false
-      // const indexofValue = map2[key].indexof(map1Value)
-      // map2[key].splice(indexofValue, 1)
+      // remove that shared value
+      const indexofValue = map2[key].indexOf(map1Value)
+      (map2[key]).splice(indexofValue, 1)
     }
   }
 
