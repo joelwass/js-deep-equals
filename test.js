@@ -1,68 +1,75 @@
 const test = require('ava')
 const { compare, compareUnsorted } = require('./')
 
-test('arrays not equal', t => {
+test('sorted: arrays not equal', t => {
   t.false(compare(a, c))
 })
 
-test('arrays equal', t => {
+test('sorted: arrays equal', t => {
   t.true(compare(a, b))
 })
 
-test('deeper arrays equal', t => {
+test('sorted: deeper arrays equal', t => {
   t.true(compare(arr1, arr2))
 })
 
-test('deeper not equal because different orders', t => {
+test('sorted: deeper not equal because different orders', t => {
   t.false(compare(arr1, arr3))
 })
 
-test('not equal arrays with different types at indexes', t => {
+test('sorted: not equal arrays with different types at indexes', t => {
   t.false(compare(arr5, arr1))
 })
 
-test('compare nested arrays not equal', t => {
+test('sorted: compare nested arrays not equal', t => {
   t.false(compare([[1, 2, 3]], [[1, 2]]))
 })
 
-test('compare nested objects not equal', t => {
+test('sorted: compare nested objects not equal', t => {
   t.false(compare([{1: 'one'}], [{1: 'two'}]))
 })
 
-test('one object and one not an object', t => {
+test('sorted: one object and one not an object', t => {
   t.false(compare([{ hi: 'world' }], [2]))
 })
 
-test('array lengths not the same', t => {
+test('sorted: array lengths not the same', t => {
   t.false(compare([1, 2, 3], [1, 2]))
 })
 
-test('array of empty object with array of stringed curly braces', t => {
+test('sorted: array of empty object with array of stringed curly braces', t => {
   t.false(compare([{a: {}}], [{a: '{}'}]))
 })
 
-test('array of empty object with array of empty object', t => {
+test('sorted: array of empty object with array of empty object', t => {
   t.true(compare([{a: {}}], [{a: {}}]))
 })
 
-test('array of empty object with array different-keyed empty object', t => {
+test('sorted: array of empty object with array different-keyed empty object', t => {
   t.false(compare([{a: {}}], [{b: {}}]))
 })
 
-test('array of empty object with array of empty array', t => {
+test('sorted: array of empty object with array of empty array', t => {
   t.false(compare([{}], [[]]))
 })
 
-test('array of same dates', t => {
+test('sorted: array of same dates', t => {
   t.true(compare([new Date('Tue Mar 24 2015 20:00:00 GMT-0400')], [new Date('Tue Mar 24 2015 20:00:00 GMT-0400')]))
 })
 
-test('array of dissimilar dates', t => {
+test('sorted: array of dissimilar dates', t => {
   t.false(compare([new Date('Tue Mar 24 2015 20:00:00 GMT-0400')], [new Date('Tue Mar 24 2017 20:00:00 GMT-0400')]))
 })
 
-test('array of date and non date', t => {
+test('sorted: array of date and non date', t => {
   t.false(compare([new Date('Tue Mar 24 2015 20:00:00 GMT-0400')], [1]))
+})
+
+test('sorted: does not mutate original date arrays', t => {
+  let a = [new Date('Tue Mar 24 2015 20:00:00 GMT-0400')]
+  let aOriginal = [new Date('Tue Mar 24 2015 20:00:00 GMT-0400')]
+  compare([a], [a])
+  t.deepEqual(a, aOriginal)
 })
 
 test('compare unsorted array lengths not the same', t => {
@@ -127,6 +134,13 @@ test('array of dissimilar dates', t => {
 
 test('array of date and non date', t => {
   t.false(compareUnsorted([new Date('Tue Mar 24 2015 20:00:00 GMT-0400')], [1]))
+})
+
+test('does not mutate original date arrays', t => {
+  let a = [new Date('Tue Mar 24 2015 20:00:00 GMT-0400')]
+  let aOriginal = [new Date('Tue Mar 24 2015 20:00:00 GMT-0400')]
+  compareUnsorted([a], [a])
+  t.deepEqual(a, aOriginal)
 })
 
 const a = [1, 2, 'test', { a: '1' }, ['five', 'six', { hi: 'world' }]]
