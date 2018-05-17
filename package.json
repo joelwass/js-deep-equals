@@ -1,6 +1,6 @@
 {
   "name": "array-deep-equals",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "get equality of arrays with nested arrays and nested objects",
   "main": "index.js",
   "scripts": {
