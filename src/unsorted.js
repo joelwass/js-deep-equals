@@ -8,9 +8,8 @@ class Node {
   }
 }
 
-const stringify = (thing) => (typeof thing) + '::' + thing
 const hasher = (thing, prefix = '') => {
-  const stringThing = prefix + stringify(thing)
+  const stringThing = prefix + (typeof thing) + '::' + thing
   let hash = 0
   if (stringThing.length === 0) return hash
   for (let i = 0; i < stringThing.length; i++) {
@@ -58,11 +57,7 @@ const createTree = (currNode, currentInput, prefix = '') => {
     currNode.children.push(node)
   }
   
-  // need to sort children first
-  const childrenHashes = currNode.children.map(c => '' + c.hash)
-  childrenHashes.sort()
-  
-  const childrenReducedHashes = childrenHashes.reduce((acc, childHash) => acc + childHash, '')
+  const childrenReducedHashes = currNode.children.reduce((acc, child) => acc + child.hash || 0, 0)
   currNode.hash = hasher(childrenReducedHashes)
   return currNode
 }
