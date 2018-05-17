@@ -6,6 +6,8 @@ testing of array deep equality (unsorted and sorted), accounts for nested arrays
 
 sorted array compare is up to ~%60 faster than the `JSON.stringify` method [jsperf](https://jsperf.com/array-deep-equals)
 
+unsorted arrays are compared using a variation of the <a href="https://en.wikipedia.org/wiki/Merkle_tree">Merkle Tree</a>
+
 ## usage
 
 `npm install array-deep-equals`
