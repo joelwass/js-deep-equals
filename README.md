@@ -1,5 +1,5 @@
 # array-deep-equals
-[![Build Status](https://travis-ci.org/joelwass/array-deep-equal.svg?branch=master)](https://travis-ci.org/joelwass/array-deep-equal)
+[![Build Status](https://travis-ci.org/joelwass/array-deep-equals.svg?branch=master)](https://travis-ci.org/joelwass/array-deep-equals)
 [![Coverage Status](https://coveralls.io/repos/github/joelwass/array-deep-equal/badge.svg?branch=master)](https://coveralls.io/github/joelwass/array-deep-equal?branch=master)
 
 testing of array deep equality (unsorted and sorted), accounts for nested arrays and nested objects
