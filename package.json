@@ -1,6 +1,6 @@
 {
   "name": "deep-equals",
-  "version": "2.0.1",
+  "version": "2.0.2",
   "description": "get equality of unsorted and sorted arrays with nested arrays and nested objects support",
   "main": "index.js",
   "scripts": {
