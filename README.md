@@ -4,7 +4,7 @@
 
 testing of array deep equality (unsorted and sorted), accounts for nested arrays and nested objects
 
-sorted array compare is up to ~%60 faster than the `JSON.stringify` method [jsperf](https://jsperf.com/array-deep-equals)
+faster than `JSON.stringify(x) === JSON.stringify(y)` and Lodash's isEqual.
 
 unsorted arrays are compared using a variation of the <a href="https://en.wikipedia.org/wiki/Merkle_tree">Merkle Tree</a>
 
@@ -13,7 +13,7 @@ unsorted arrays are compared using a variation of the <a href="https://en.wikipe
 `npm install array-deep-equals`
 
 ```javascript
-const { arrayDeepEqual, arrayDeepEqualUnsorted } = require('array-deep-equals')
+const { compare, compareUnsorted } = require('array-deep-equals')
 const arr1 = [
   1,
   2,
@@ -29,6 +29,7 @@ const arr1 = [
   }
 ]
 
+// order and contents are the same as arr1
 let arr2 = [
   1,
   2,
@@ -44,6 +45,7 @@ let arr2 = [
   }
 ]
 
+// order of this array is different than arr1, but content is the same
 let arr3 = [
   1,
   'test',
@@ -52,15 +54,16 @@ let arr3 = [
   'test2',
   {
     b: 13,
-    a: 12, // different order of objects is ok
+    a: 12,
     d: [ 71, 72, { 'sonested': true }, 73 ]
     c: 14,
   },
   'test3'
 ]
 
-arrayDeepEqual(arr1, arr2) // true
-arrayDeepEqualUnsorted(arr1, arr2) // true
+compare(arr1, arr2) // true
+compare(arr1, arr3) // false
+compareUnsorted(arr1, arr3) // true
 ```
 
 ## License
