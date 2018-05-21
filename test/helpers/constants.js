@@ -1,5 +1,23 @@
 module.exports = {
   a: [1, 2, 'test', { a: '1' }, ['five', 'six', { hi: 'world' }]],
+  aObject: {
+    a: 12,
+    b: 13,
+    c: 14,
+    d: [ 71, 72, 73, { 'sonested': true } ]
+  },
+  bObject: {
+    a: 12,
+    b: 13,
+    c: 14,
+    d: [ 71, 72, 73, { 'sonested': true } ]
+  },
+  cObject: {
+    a: 12,
+    b: 13,
+    c: 14,
+    d: [ 71, 74, 73, { 'sonested': false } ]
+  },
   b: [1, 2, 'test', { a: '1' }, ['five', 'six', { hi: 'world' }]],
   c: [1, 2, { a: '1' }, 'test'],
   arr1: [

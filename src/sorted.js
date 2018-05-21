@@ -1,4 +1,4 @@
-const compare = (arr1, arr2) => {
+const compareObjects = (arr1, arr2) => {
   if (Array.isArray(arr1) && Array.isArray(arr2)) {
     // a man's array does not look like a girl's array
     if (arr1.length !== arr2.length) return false
@@ -50,6 +50,13 @@ const compare = (arr1, arr2) => {
   }
 
   return true
+}
+
+const compare = (a, b) => {
+  if ((Array.isArray(a) && Array.isArray(b)) || (typeof a === 'object' && typeof b === 'object') && (a.length === b.length)) {
+    return compareObjects(a, b)
+  }
+  return false
 }
 
 module.exports = compare

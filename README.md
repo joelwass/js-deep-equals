@@ -1,8 +1,8 @@
-# array-deep-equals
-[![Build Status](https://travis-ci.org/joelwass/array-deep-equals.svg?branch=master)](https://travis-ci.org/joelwass/array-deep-equals)
-[![Coverage Status](https://coveralls.io/repos/github/joelwass/array-deep-equal/badge.svg?branch=master)](https://coveralls.io/github/joelwass/array-deep-equal?branch=master)
+# deep-equals
+[![Build Status](https://travis-ci.org/joelwass/deep-equals.svg?branch=master)](https://travis-ci.org/joelwass/deep-equals)
+[![Coverage Status](https://coveralls.io/repos/github/joelwass/deep-equals/badge.svg?branch=master)](https://coveralls.io/github/joelwass/deep-equals?branch=master)
 
-testing of array deep equality (unsorted and sorted), accounts for nested arrays and nested objects
+testing of array and object deep equality (unsorted and sorted), accounts for nested arrays and nested objects
 
 faster than `JSON.stringify(x) === JSON.stringify(y)` and Lodash's isEqual.
 
@@ -10,10 +10,10 @@ unsorted arrays are compared using a variation of the <a href="https://en.wikipe
 
 ## usage
 
-`npm install array-deep-equals`
+`npm install deep-equals`
 
 ```javascript
-const { compare, compareUnsorted } = require('array-deep-equals')
+const { compare, compareUnsorted } = require('deep-equals')
 const arr1 = [
   1,
   2,

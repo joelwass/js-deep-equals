@@ -1,5 +1,5 @@
 {
-  "name": "array-deep-equals",
+  "name": "deep-equals",
   "version": "2.0.1",
   "description": "get equality of unsorted and sorted arrays with nested arrays and nested objects support",
   "main": "index.js",
@@ -16,12 +16,16 @@
   },
   "keywords": [
     "array",
+    "object",
+    "object deep equal",
     "deep equals",
     "array deep equals",
     "array equals",
     "array comparison",
     "equals",
     "unsorted array equals",
-    "sorted array equals"
+    "sorted array equals",
+    "objects",
+    "unsorted"
   ]
 }

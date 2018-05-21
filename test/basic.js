@@ -2,12 +2,24 @@ const constants = require('./helpers/constants')
 const test = require('ava')
 const { compare, compareUnsorted } = require('../')
 
+test('not passing in objects or arrays', t => {
+  t.false(compare(1, 2))
+})
+
 test('sorted: arrays not equal', t => {
   t.false(compare(constants.a, constants.c))
 })
 
 test('sorted: arrays equal', t => {
   t.true(compare(constants.a, constants.b))
+})
+
+test('sorted: objects equal', t => {
+  t.true(compare(constants.aObject, constants.bObject))
+})
+
+test('sorted: objects not equal', t => {
+  t.false(compare(constants.aObject, constants.cObject))
 })
 
 test('sorted: deeper arrays equal', t => {

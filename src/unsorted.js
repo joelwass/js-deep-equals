@@ -67,9 +67,10 @@ const createFinalHash = (input) => {
 }
 
 const compareUnsorted = (a, b) => {
-  if (!(Array.isArray(a) && Array.isArray(b)) || a.length !== b.length) return false
-  if (createFinalHash(a) !== createFinalHash(b)) return false
-  return true
+  if ((Array.isArray(a) && Array.isArray(b)) || (typeof a === 'object' && typeof b === 'object') && (a.length === b.length)) {
+    return createFinalHash(a) === createFinalHash(b)
+  }
+  return false
 }
 
 module.exports = compareUnsorted
