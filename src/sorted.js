@@ -53,7 +53,7 @@ const compareObjects = (arr1, arr2) => {
 }
 
 const compare = (a, b) => {
-  if ((Array.isArray(a) && Array.isArray(b)) || (typeof a === 'object' && typeof b === 'object') && (a.length === b.length)) {
+  if (a && b && ((Array.isArray(a) && Array.isArray(b)) || (typeof a === 'object' && typeof b === 'object')) && (a.length === b.length)) {
     return compareObjects(a, b)
   }
   return false
