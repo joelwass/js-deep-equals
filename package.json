@@ -1,7 +1,7 @@
 {
   "name": "array-deep-equals",
-  "version": "2.0.0",
-  "description": "get equality of arrays with nested arrays and nested objects",
+  "version": "2.0.1",
+  "description": "get equality of unsorted and sorted arrays with nested arrays and nested objects support",
   "main": "index.js",
   "scripts": {
     "test": "nyc ava ./test",
@@ -13,5 +13,15 @@
     "ava": "^0.25.0",
     "coveralls": "^3.0.1",
     "nyc": "^11.7.3"
-  }
+  },
+  "keywords": [
+    "array",
+    "deep equals",
+    "array deep equals",
+    "array equals",
+    "array comparison",
+    "equals",
+    "unsorted array equals",
+    "sorted array equals"
+  ]
 }
