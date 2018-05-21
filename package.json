@@ -27,5 +27,13 @@
     "sorted array equals",
     "objects",
     "unsorted"
-  ]
+  ],
+  "directories": {
+    "test": "test"
+  },
+  "dependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git@github-personal:joelwass/deep-equals.git"
+  }
 }
