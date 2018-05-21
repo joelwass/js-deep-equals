@@ -1,6 +1,6 @@
-# deep-equals
-[![Build Status](https://travis-ci.org/joelwass/deep-equals.svg?branch=master)](https://travis-ci.org/joelwass/deep-equals)
-[![Coverage Status](https://coveralls.io/repos/github/joelwass/deep-equals/badge.svg?branch=master)](https://coveralls.io/github/joelwass/deep-equals?branch=master)
+# js-deep-equals
+[![Build Status](https://travis-ci.org/joelwass/js-deep-equals.svg?branch=master)](https://travis-ci.org/joelwass/js-deep-equals)
+[![Coverage Status](https://coveralls.io/repos/github/joelwass/js-deep-equals/badge.svg?branch=master)](https://coveralls.io/github/joelwass/js-deep-equals?branch=master)
 
 testing of array and object deep equality (unsorted and sorted), accounts for nested arrays and nested objects
 
@@ -10,10 +10,10 @@ unsorted arrays are compared using a variation of the <a href="https://en.wikipe
 
 ## usage
 
-`npm install deep-equals`
+`npm install js-deep-equals`
 
 ```javascript
-const { compare, compareUnsorted } = require('deep-equals')
+const { compare, compareUnsorted } = require('js-deep-equals')
 const arr1 = [
   1,
   2,
