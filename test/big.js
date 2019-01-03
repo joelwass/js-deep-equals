@@ -10,7 +10,7 @@ test.before(() => {
     a.push([])
     a2.push([])
     b.push([])
-    for (let i = 0; i < 1000000; i++) {
+    for (let i = 0; i < 100000; i++) {
       let x = Math.floor(Math.random() * i)
       a[j].push(x)
       a2[j].push(x)

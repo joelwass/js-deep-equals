@@ -1,3 +1,5 @@
+const hash = require('./hash')
+
 const EMPTY_OBJECT = '__empty__obj'
 const EMPTY_ARRAY = '__empty__arr'
 
@@ -10,14 +12,15 @@ class Node {
 
 const hasher = (thing, prefix = '') => {
   const stringThing = prefix + (typeof thing) + '::' + thing
+  let h = hash(stringThing)
+  return h
+}
 
-  let hash = 5381
-  let i = stringThing.length;
-
-  while (i) {
-    hash = (hash * 33) ^ stringThing.charCodeAt(--i);
+const combineHashes = (parentHash, child) => {
+  for (let i = 0; i < parentHash.length; i++) {
+    parentHash[i] += child.hash[i]
   }
-  return hash
+  return parentHash
 }
 
 const newNode = (thing, prefix) => {
@@ -56,8 +59,9 @@ const createTree = (currNode, currentInput, prefix = '') => {
     const node = createTree(new Node(), currentInput[key], prefix)
     currNode.children.push(node)
   }
-  
-  currNode.hash = hasher(currNode.children.reduce((acc, child) => acc + child.hash || 0, 0))
+  // iterable's hash is combined hash of all children
+  let combined = currNode.children.reduce(combineHashes, Buffer.alloc(16))
+  currNode.hash = hasher(combined)
   return currNode
 }
 
@@ -68,7 +72,7 @@ const createFinalHash = (input) => {
 
 const compareUnsorted = (a, b) => {
   if (a && b && ((Array.isArray(a) && Array.isArray(b)) || (typeof a === 'object' && typeof b === 'object')) && (a.length === b.length)) {
-    return createFinalHash(a) === createFinalHash(b)
+    return createFinalHash(a).compare(createFinalHash(b)) === 0
   }
   return false
 }
