@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "nyc ava ./test",
-    "bench": "node test/benchmark.js",
+    "bench": "node benchmarks",
     "coverage": "nyc npm test ./test && nyc report --reporter=text-lcov | ./node_modules/coveralls/bin/coveralls.js"
   },
   "author": "Joel Wasserman",
