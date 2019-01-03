@@ -1,4 +1,4 @@
-const hash = require('./hash')
+const { v3: hash } = require('murmurhash')
 
 const EMPTY_OBJECT = '__empty__obj'
 const EMPTY_ARRAY = '__empty__arr'
@@ -12,15 +12,11 @@ class Node {
 
 const hasher = (thing, prefix = '') => {
   const stringThing = prefix + (typeof thing) + '::' + thing
-  let h = hash(stringThing)
-  return h
+  return hash(stringThing)
 }
 
 const combineHashes = (parentHash, child) => {
-  for (let i = 0; i < parentHash.length; i++) {
-    parentHash[i] += child.hash[i]
-  }
-  return parentHash
+  return (parentHash + child.hash) & 0xFFFFFFFF
 }
 
 const newNode = (thing, prefix) => {
@@ -60,7 +56,7 @@ const createTree = (currNode, currentInput, prefix = '') => {
     currNode.children.push(node)
   }
   // iterable's hash is combined hash of all children
-  let combined = currNode.children.reduce(combineHashes, Buffer.alloc(16))
+  let combined = currNode.children.reduce(combineHashes, 0)
   currNode.hash = hasher(combined)
   return currNode
 }
@@ -72,7 +68,7 @@ const createFinalHash = (input) => {
 
 const compareUnsorted = (a, b) => {
   if (a && b && ((Array.isArray(a) && Array.isArray(b)) || (typeof a === 'object' && typeof b === 'object')) && (a.length === b.length)) {
-    return createFinalHash(a).compare(createFinalHash(b)) === 0
+    return createFinalHash(a) === createFinalHash(b)
   }
   return false
 }

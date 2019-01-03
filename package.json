@@ -31,7 +31,9 @@
   "directories": {
     "test": "test"
   },
-  "dependencies": {},
+  "dependencies": {
+    "murmurhash": "0.0.2"
+  },
   "repository": {
     "type": "git",
     "url": "git@github-personal:joelwass/deep-equals.git"
