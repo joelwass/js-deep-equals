@@ -1,6 +1,6 @@
 # js-deep-equals
-[![Build Status](https://travis-ci.org/joelwass/array-deep-equals.svg?branch=master)](https://travis-ci.org/joelwass/array-deep-equals)
-[![Coverage Status](https://coveralls.io/repos/github/joelwass/array-deep-equal/badge.svg?branch=master)](https://coveralls.io/github/joelwass/array-deep-equal?branch=master)
+[![Build Status](https://travis-ci.org/joelwass/js-deep-equals.svg?branch=master)](https://travis-ci.org/joelwass/js-deep-equals)
+[![Coverage Status](https://coveralls.io/repos/github/joelwass/js-deep-equals/badge.svg?branch=master)](https://coveralls.io/github/joelwass/js-deep-equals?branch=master)
 
 testing of array and object deep equality (unsorted and sorted), accounting for nested arrays and nested objects
 
