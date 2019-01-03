@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "nyc ava ./test",
+    "bench": "node test/benchmark.js",
     "coverage": "nyc npm test ./test && nyc report --reporter=text-lcov | ./node_modules/coveralls/bin/coveralls.js"
   },
   "author": "Joel Wasserman",
@@ -12,6 +13,7 @@
   "devDependencies": {
     "ava": "^0.25.0",
     "coveralls": "^3.0.1",
+    "lodash.isequal": "^4.5.0",
     "nyc": "^11.7.3"
   },
   "keywords": [

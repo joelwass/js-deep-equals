@@ -23,16 +23,10 @@ test.before(() => {
 })
 
 test('compare unsorted arrays that are huge', t => {
-  let t1 = Date.now()
-  console.log('begin unsorted big test')
   t.true(compareUnsorted(a, b))
-  console.log('finish unsorted big test', `${Date.now() - t1}ms`)
 })
 
 test('compare sorted arrays that are huge', t => {
-  let t1 = Date.now()
-  console.log('begin sorted big test')
   t.true(compare(a, a2))
-  console.log('finish unsorted big test', `${Date.now() - t1}ms`)
 })
 

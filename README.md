@@ -2,11 +2,13 @@
 [![Build Status](https://travis-ci.org/joelwass/array-deep-equals.svg?branch=master)](https://travis-ci.org/joelwass/array-deep-equals)
 [![Coverage Status](https://coveralls.io/repos/github/joelwass/array-deep-equal/badge.svg?branch=master)](https://coveralls.io/github/joelwass/array-deep-equal?branch=master)
 
-testing of array and object deep equality (unsorted and sorted), accounts for nested arrays and nested objects
+testing of array and object deep equality (unsorted and sorted), accounting for nested arrays and nested objects
 
-faster than `JSON.stringify(x) === JSON.stringify(y)` and Lodash's isEqual.
+faster than `JSON.stringify(x) === JSON.stringify(y)` and Lodash's isEqual (benchmark code [here](test/benchmark.js))
 
-unsorted arrays are compared using a variation of the <a href="https://en.wikipedia.org/wiki/Merkle_tree">Merkle Tree</a>
+![screenshot](resources/benchmark_results.png)
+
+unsorted arrays are compared by creating a [Merkle Tree](https://en.wikipedia.org/wiki/Merkle_tree) out of the input and comparing the top level hashes. hashing is done using [murmur v3](https://en.wikipedia.org/wiki/MurmurHash).
 
 ## usage
 
