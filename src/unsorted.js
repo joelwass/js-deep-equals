@@ -27,8 +27,9 @@ const newNode = (thing, prefix) => {
 
 const createTree = (currNode, currentInput, prefix = '') => {
   const isObject = typeof currentInput === 'object'
+  const isNil = currentInput === null || typeof currentInput === 'undefined'
   const isArray = Array.isArray(currentInput)
-  const keys = Object.keys(currentInput)
+  const keys = !isNil ? Object.keys(currentInput) : []
 
   // we're at a weird value
   if (currentInput instanceof Date || currentInput instanceof RegExp) {
